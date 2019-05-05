@@ -7,6 +7,9 @@ namespace GoFish
     {
         private List<Card> cards;
 
+        /// <summary>
+        /// number of cards in deck
+        /// </summary>
         public int Count { get { return cards.Count; } }
 
         public Deck()

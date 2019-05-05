@@ -20,6 +20,13 @@ namespace GoFish
         {
             return Name;
         }
+
+        internal static string Plural(Values value)
+        {
+            if (value == Values.Six)
+                return "Sixes";
+            return value.ToString() + "s";
+        }
     }
 
     /// <summary>
