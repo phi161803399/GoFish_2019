@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace GoFish
 {
@@ -21,6 +22,9 @@ namespace GoFish
         }
     }
 
+    /// <summary>
+    /// first compares by suit, then by value
+    /// </summary>
     public class CardComparer_bySuit : Comparer<Card>
     {
         public override int Compare(Card x, Card y)
@@ -38,6 +42,25 @@ namespace GoFish
                 else
                     return 0;
             }
+        }
+    }
+
+    /// <summary>
+    /// first compares by value, then by suit
+    /// </summary>
+    public class CardComparer_byValue : Comparer<Card>
+    {
+        public override int Compare(Card x, Card y)
+        {
+            if (x.Value < y.Value)
+                return -1;
+            if (x.Value > y.Value)
+                return 1;
+            if (x.Suit < y.Suit)
+                return -1;
+            if (x.Suit > y.Suit)
+                return 1;
+            return 0;
         }
     }
 }
