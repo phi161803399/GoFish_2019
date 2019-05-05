@@ -71,7 +71,7 @@ namespace GoFish
         }
 
         /// <summary>
-        /// get a book of cards from the deck
+        /// removes a book of cards from the deck
         /// </summary>
         /// <param name="value"><see cref="Values">value</see></param>
         /// <returns><see cref="Deck">book of cards</see></returns>
