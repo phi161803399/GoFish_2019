@@ -16,7 +16,7 @@ namespace GoFish
         private TextBox textBoxOnForm;
 
         public int CardCount { get { return cards.Count; } }
-        public void TakeCard(Card card) { cards.AddCard(card); }
+        public bool TakeCard(Card card) { return cards.AddCard(card); }
         public IEnumerable<string> GetCardNames() { return cards.GetCardNames(); }
         public Card Peek(int cardNumber) { return cards.Peek(cardNumber); }
         public void SortHand() { cards.SortByValue(); }

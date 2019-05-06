@@ -12,6 +12,9 @@ namespace GoFish
         /// </summary>
         public int Count { get { return cards.Count; } }
 
+        /// <summary>
+        /// create a complete deck with 52 <see cref="Card">cards</see> sorted by suit and value
+        /// </summary>
         public Deck()
         {
             cards = new List<Card>();
@@ -20,6 +23,10 @@ namespace GoFish
                     this.AddCard(new Card() { Suit = (Suits)suit, Value = (Values)value });
         }
 
+        /// <summary>
+        /// create a deck with list of <see cref="Card">cards</see>
+        /// </summary>
+        /// <param name="initialCards"></param>
         public Deck(IEnumerable<Card> initialCards)
         {
             cards = new List<Card>(initialCards);
@@ -32,7 +39,7 @@ namespace GoFish
 
         public bool AddCard(Card cardToAdd)
         {
-            if (cards != null)
+            if (cards != null || cardToAdd != null)
             {
                 cards.Add(cardToAdd);
                 return true;
