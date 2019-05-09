@@ -16,10 +16,10 @@ namespace GoFish
             Random random = new Random();
             this.textBoxOnForm = textBoxOnForm;
             players = new List<Player>();
-            players.Add(new GoFish.Player(playerName, random, textBoxOnForm));
+            players.Add(new Player(playerName, random, textBoxOnForm));
             foreach (string opponent in opponentNames)
             {
-                players.Add(new GoFish.Player(opponent, random, textBoxOnForm));
+                players.Add(new Player(opponent, random, textBoxOnForm));
             }
             books = new Dictionary<Values, Player>();
             stock = new Deck();
@@ -55,7 +55,7 @@ namespace GoFish
             for (int i = 0; i < players.Count; i++)
             {
                 if (i == 0 && selectedPlayerCard >= 0)
-                    players[i].AskForACard(players, i, stock, (Values)selectedPlayerCard);
+                    players[i].AskForACard(players, i, stock, players[i].Peek(selectedPlayerCard).Value);
                 else
                     players[i].AskForACard(players, i, stock);
                 if (PullOutBooks(players[i]))
@@ -120,8 +120,35 @@ namespace GoFish
             foreach (string winner in scoresPerPlayer.Keys)
                 if (scoresPerPlayer[winner] == largestNumberOfBooks)
                     winners.Add(winner);
-            if (winners.Count == 1)
-                return $"{winners} ";
+            int numberOfWinners = winners.Count;
+            if (numberOfWinners == 1)
+                return $"{winners[0]} with {scoresPerPlayer[winners[0]]} books";
+            else
+                return $"";
+        }
+
+        /// <summary>
+        /// calls <see cref="Player.GetCardNames"/>
+        /// </summary>
+        /// <returns><see cref="IEnumerable{String}"/></returns>
+        public IEnumerable<string> GetPlayerCardNames()
+        {
+            return players[0].GetCardNames();
+        }
+
+        public string DescribePlayerHands()
+        {
+            string description = "";
+            for (int i = 0; i < players.Count; i++)
+            {
+                description += $"{players[i].Name} has {players[i].CardCount}";
+                if (players[i].CardCount == 1)
+                    description += " card." + Environment.NewLine;
+                else
+                    description += " cards." + Environment.NewLine;
+            }
+            description += $"The stock has {stock.Count} cards left." + Environment.NewLine;
+            return description;
         }
     }
 }

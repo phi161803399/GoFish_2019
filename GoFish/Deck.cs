@@ -59,7 +59,7 @@ namespace GoFish
         public Card Deal(int index)
         {
             Card cardToDeal = null;
-            if (cards != null && index >= 0) 
+            if (cards != null && cards.Count > 0 && index >= 0) 
             {
                 cardToDeal = cards[index];
                 cards.RemoveAt(index);

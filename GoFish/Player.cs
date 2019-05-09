@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GoFish
@@ -26,6 +23,7 @@ namespace GoFish
             this.name = name;
             this.random = random;
             this.textBoxOnForm = textBoxOnForm;
+            this.cards = new Deck(new Card[] { });
             textBoxOnForm.Text += $"{Name} has just joined the game" + Environment.NewLine;
         }
 
